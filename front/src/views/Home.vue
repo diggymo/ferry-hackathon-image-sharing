@@ -55,12 +55,12 @@ export default {
   computed: {
     startDate() {
       return this.images.slice(0,this.images.length).sort((a,b) => {
-        return a.created_at < b.created_at
+        return a.created_at > b.created_at
       })[0].created_at;
     },
     endDate() {
       return this.images.slice(0,this.images.length).sort((a,b) => {
-        return a.created_at > b.created_at
+        return a.created_at < b.created_at
       })[0].created_at;
     },
   },
