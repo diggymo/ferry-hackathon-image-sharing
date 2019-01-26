@@ -57,10 +57,12 @@ export default {
 
     this.columnWidth = window.innerWidth
     
-    console.log("SPOT", this.$route.params)
-    console.log("QR", this.$route.query)
+    const spotId = this.$route.params.spot_id
+    const qrId = this.$route.query.qrid
+    console.log("SPOT", spotId)
+    console.log("QR", qrId)
     this.images = mockImages
-    this.images = await this.getImages(this.$route.params.spot_id, this.$route.query.qrid)
+    this.images = await this.getImages(spotId, qrId)
   },
   data() {
     return {
