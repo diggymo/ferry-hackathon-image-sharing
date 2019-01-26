@@ -140,7 +140,7 @@ export default {
       return axios.get(`http://ferry-sunflower.ga/api/hogehoge/?qrid=${qrId}`).then(res => {
         console.log("hogeee", res.data)
         for (let index = 0; index < res.data.length; index++) {
-          console.log(res.data[index].spot);
+          console.log(res.data[index]);
         }
         this.images =  res.data
         this.onLoaded()
