@@ -50,9 +50,6 @@ export default {
     var grid = document.getElementById('grid');
 
     this.columnWidth = (window.innerWidth - 48 - 10)/2
-
-    setTimeout(() =>  {
-    }, 1000)
     /* eslint-disable no-unused-vars */
     this.msnry = new Masonry(grid, {
         columnWidth: this.columnWidth,
@@ -94,7 +91,7 @@ export default {
     console.log("SPOT", spotId)
     console.log("QR", qrId)
     // this.images = mockImages
-    this.images = await this.getImages(spotId, qrId)
+    await this.getImages(spotId, qrId)
     this.onLoaded()
   },
   data() {
@@ -136,18 +133,18 @@ export default {
     async getImages(spotId, qrId) {
       if (spotId === undefined || qrId === undefined) {
         // return mockImages
-        return []
+        this.images = []
       }
 
       console.log(`http://ferry-sunflower.ga/api/hogehoge/?qrid=${qrId}`)
       return axios.get(`http://ferry-sunflower.ga/api/hogehoge/?qrid=${qrId}`).then(res => {
         console.log("hogeee", res.data)
-        return res.data
+        this.images =  res.data
       }).catch(err => {
         console.log("NETWORK_ERR", err)
         // console.log(mockImages)
         // return mockImages
-        return []
+        this.images =  []
       })
     }
   }
