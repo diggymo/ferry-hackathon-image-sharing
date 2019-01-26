@@ -42,7 +42,7 @@ export default {
   async mounted() {
     var grid = document.getElementById('grid');
 
-    this.columnWidth = (window.innerWidth - 48 - 10)/2 - 20
+    this.columnWidth = (window.innerWidth - 48 - 10)/2
   
     /* eslint-disable no-unused-vars */
     this.msnry = new Masonry(grid, {
