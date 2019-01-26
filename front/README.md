@@ -10,7 +10,7 @@ GET http://ferry-sunflower.ga/api/v1/qr/{QRID}
 
 ### response
 
-```
+```json
 [
     {
         image: "xxxx_yyyy_zzzzz_hrejigoragha.jpg", // 画像URL,
