@@ -11,7 +11,7 @@
           <div v-for="image in images" :key="image.src"  class="grid-item image-radius" :style="{width: columnWidth + 'px'}" >
             <thumbnail-image :image="image" @loaded="onLoaded" @click.native="onClickImage(image)" class="image-radius"/>
           </div>
-          <div class="grid-item image-radius" :style="{width: columnWidth + 'px'}" >
+          <!-- <div class="grid-item image-radius" :style="{width: columnWidth + 'px'}" >
             <thumbnail-image :image="sunFlowerImage" @loaded="onLoaded" @click.native="onClickFerryThumbnail" class="image-radius"/>
           </div>
           <div class="grid-item image-radius" :style="{width: columnWidth + 'px'}" >
@@ -19,7 +19,7 @@
           </div>
           <div class="grid-item image-radius" :style="{width: columnWidth + 'px'}" >
             <thumbnail-image :image="sunFlowerImage" @loaded="onLoaded" @click.native="onClickFerryThumbnail" class="image-radius"/>
-          </div>
+          </div> -->
         </div>
       </div>
     </section>
