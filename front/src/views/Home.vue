@@ -87,6 +87,7 @@ export default {
     console.log("QR", qrId)
     this.images = mockImages
     this.images = await this.getImages(spotId, qrId)
+    this.onLoaded()
   },
   data() {
     return {
@@ -124,11 +125,16 @@ export default {
     onClickFerryThumbnail() {
       console.log("SUN_FLOEWR!!!!")
     },
-    getImages(spotId, qrId) {
+    async getImages(spotId, qrId) {
+      if (spotId === undefined || qrId === undefined) {
+        return mockImages
+      }
+
       return axios.get(`/api/hogehoge/?qrid=${qrId}`).then(res => {
         return res.data
       }).catch(err => {
         console.log("NETWORK_ERR", err)
+        console.log(mockImages)
         return mockImages
       })
     }
