@@ -99,7 +99,7 @@ export default {
       console.log("SUN_FLOEWR!!!!")
     },
     getImages(spotId, qrId) {
-      return axios.get(`/api/qr/${qrId}`).then(res => {
+      return axios.get(`/api/hogehoge/?qrid=${qrId}`).then(res => {
         return res.data
       }).catch(err => {
         console.log("NETWORK_ERR", err)
