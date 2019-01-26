@@ -1,26 +1,90 @@
 <template>
   <div>
-    <section class="hero is-primary">
+    <nav class="navbar  is-fixed-top" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand">
+        <div class="navbar-item"><h3><b>さんふらわぁの旅</b>&nbsp;&nbsp;&nbsp;<small>aaaa年xx月yy日からbbbb年ii月jj日</small></h3></div>
+      </div>
+      <div class="navbar-end">
+        <!-- <div class="navbar-item"><h3><b>さんふらわぁの旅</b></h3></div> -->
+        <!-- <a class="navbar-item" href="https://bulma.io">
+          <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
+        </a> -->
+
+        <!-- <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a> -->
+      </div>
+
+      <div id="navbarBasicExample" class="navbar-menu">
+        <div class="navbar-start">
+          <a class="navbar-item">
+            Home
+          </a>
+
+          <a class="navbar-item">
+            Documentation
+          </a>
+
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a class="navbar-link">
+              More
+            </a>
+
+            <div class="navbar-dropdown">
+              <a class="navbar-item">
+                About
+              </a>
+              <a class="navbar-item">
+                Jobs
+              </a>
+              <a class="navbar-item">
+                Contact
+              </a>
+              <hr class="navbar-divider">
+              <a class="navbar-item">
+                Report an issue
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="navbar-end">
+          <div class="navbar-item">
+            <div class="buttons">
+              <a class="button is-primary">
+                <strong>Sign up</strong>
+              </a>
+              <a class="button is-light">
+                Log in
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <!-- <section class="hero is-primary">
       <div class="hero-body">
         <div class="container">
           <h1 class="title">
-            Primary title
+            さんふらわぁの旅
           </h1>
           <h2 class="subtitle">
             Primary subtitle
           </h2>
         </div>
       </div>
-    </section>
+    </section> -->
     <section class="section">
       <div class="container">
         <div id="grid">
-          <div v-for="image in images" :key="image.src"  class="grid-item" style="background-color: red;" :style="{width: columnWidth + 'px'}" >
-            <thumbnail-image :src="image.image" @loaded="onLoaded" @click.native="onClickImage(image)"/>
+          <div v-for="image in images" :key="image.src"  class="grid-item image-radius" style="background-color: red;" :style="{width: columnWidth + 'px'}" >
+            <thumbnail-image :image="image" @loaded="onLoaded" @click.native="onClickImage(image)" class="image-radius"/>
           </div>
         </div>
       </div>
-    </section>  
+    </section>
     <image-card :image="selectedImage" @close="onCloseModal"/>
   </div>
 </template>
@@ -149,5 +213,9 @@ export default {
 <style>
 .grid-item {
   margin-bottom: 10px;
+}
+
+.image-radius {
+  border-radius: 8px;
 }
 </style>
