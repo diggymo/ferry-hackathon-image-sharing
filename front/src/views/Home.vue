@@ -30,7 +30,7 @@ import Masonry from "masonry-layout"
 
 import axios from "axios"
 
-import mockImages from "@/mock/images"
+// import mockImages from "@/mock/images"
 
 // @ is an alias to /src
 /* eslint-disable no-console */
@@ -85,7 +85,7 @@ export default {
     const qrId = this.$route.query.qrid
     console.log("SPOT", spotId)
     console.log("QR", qrId)
-    this.images = mockImages
+    // this.images = mockImages
     this.images = await this.getImages(spotId, qrId)
     this.onLoaded()
   },
@@ -127,15 +127,19 @@ export default {
     },
     async getImages(spotId, qrId) {
       if (spotId === undefined || qrId === undefined) {
-        return mockImages
+        // return mockImages
+        return []
       }
 
-      return axios.get(`/api/hogehoge/?qrid=${qrId}`).then(res => {
+      console.log(`http://ferry-sunflower.ga/api/hogehoge/?qrid=${qrId}`)
+      return axios.get(`http://ferry-sunflower.ga/api/hogehoge/?qrid=${qrId}`).then(res => {
+        console.log("hogeee", res.data)
         return res.data
       }).catch(err => {
         console.log("NETWORK_ERR", err)
-        console.log(mockImages)
-        return mockImages
+        // console.log(mockImages)
+        // return mockImages
+        return []
       })
     }
   }
