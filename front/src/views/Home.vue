@@ -54,11 +54,17 @@ export default {
   },
   computed: {
     startDate() {
+      if (this.images.length == 0) {
+        return "-----"
+      }
       return this.images.slice(0,this.images.length).sort((a,b) => {
         return a.created_at > b.created_at
       })[0].created_at;
     },
     endDate() {
+      if (this.images.length == 0) {
+        return "-----"
+      }
       return this.images.slice(0,this.images.length).sort((a,b) => {
         return a.created_at < b.created_at
       })[0].created_at;
