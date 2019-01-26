@@ -25,3 +25,23 @@
   color: #42b983;
 }
 </style>
+
+<style lang="scss">
+@import  "../node_modules/bulma/bulma.sass";
+
+$primary: #ef7a00;
+$secondary: #076bbb;
+
+.has-text-secondary {
+  color: $secondary !important;
+}
+
+.button.is-primary {
+  background-color: $secondary !important;
+}
+
+.navbar.is-primary {
+  background-color: $primary !important;
+}
+
+</style>

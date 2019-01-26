@@ -5,15 +5,20 @@
       <section class="section" v-if="isModalActive">
         <div class="box">
           <img :src="image.image">
-          <h4>{{ image.spot.name }}</h4>
-          <h4>{{ image.created_at }}</h4>
-          <h4>{{ image.spot.description }}</h4>
-          <span class="icon">
-            <i class="fas fa-download"></i>
-          </span>
-          <span class="icon">
-            <i class="fas fa-share-alt"></i>            
-          </span>
+          <p class="title is-4 has-text-left is-marginless">{{ image.spot.name }}</p>
+          <p class="subtitle is-6 has-text-left is-marginless has-text-secondary">{{ image.created_at }}</p>
+          <h4 class="has-text-left has-text-secondary" style="margin-bottom: 1rem;">{{ image.spot.description }}</h4>
+          <a :href="image.image" target="_blank" class="is-pulled-left" >
+            <span class="icon is-medium">
+              <i class="fas fa-2x fa-download"></i>
+            </span>
+          </a>
+          <a class="is-pulled-right" :href="sharingUrl">
+            <span class="icon  is-medium">
+              <i class="fas fa-2x fa-share-alt"></i> 
+            </span>
+          </a>
+          <div class="is-clearfix"/>
         </div>
       </section>
     </div>
@@ -30,22 +35,27 @@ export default {
       default: null
     }
   },
+  data() {
+    return {
+      sharingUrl: "https://twitter.com/intent/tweet?text=&hashtags=ferry_hack"
+    }
+  },
   computed: {
     isModalActive() {
       return this.image !== null
-    }
+    },
   },
   methods: {
     closeModal() {
       this.$emit("close")
-    },
+    }
   }
 }
 </script>
 
 <style scoped>
 img {
-  max-width: 100%;
+  width: 100%;
 }
 
 </style>

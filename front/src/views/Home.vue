@@ -1,6 +1,6 @@
 <template>
   <div>
-    <nav class="navbar  is-fixed-top" role="navigation" aria-label="main navigation">
+    <nav class="navbar is-fixed-top is-primary" role="navigation" aria-label="main navigation">
       <div class="navbar-brand">
         <div class="navbar-item"><h3><b>さんふらわぁの旅</b>&nbsp;&nbsp;&nbsp;<small>aaaa年xx月yy日からbbbb年ii月jj日</small></h3></div>
       </div>
@@ -82,6 +82,9 @@
           <div v-for="image in images" :key="image.src"  class="grid-item image-radius" style="background-color: red;" :style="{width: columnWidth + 'px'}" >
             <thumbnail-image :image="image" @loaded="onLoaded" @click.native="onClickImage(image)" class="image-radius"/>
           </div>
+          <div class="grid-item image-radius" style="background-color: red;" :style="{width: columnWidth + 'px'}" >
+            <thumbnail-image :image="sunFlowerImage" @loaded="onLoaded" @click.native="onClickFerryThumbnail" class="image-radius"/>
+          </div>
         </div>
       </div>
     </section>
@@ -127,6 +130,15 @@ export default {
       msnry: null,
       columnWidth: 500, 
       selectedImage: null,
+      sunFlowerImage: {
+        image: "/sun_flower.jpg", // 画像URL,
+        created_at: "2018-10-10 11:22:33", // 撮影日時。できればほしい笑
+        spot: {
+          id: 4,
+          name: "さんふらわぁ",
+          description: "人気の温泉観光地。おどろおどろしい地獄の名が付けられ、柵で囲われたさまざまな湯だまりがある。動物たちも飼育されている。"
+        }
+      },
       images: [
         {
           image: "http://placehold.jp/300x500.png", // 画像URL,
@@ -204,6 +216,9 @@ export default {
     },
     onCloseModal() {
       this.selectedImage = null
+    },
+    onClickFerryThumbnail() {
+      console.log("SUN_FLOEWR!!!!")
     }
   }
 }
