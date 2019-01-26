@@ -14,6 +14,12 @@
           <div class="grid-item image-radius" :style="{width: columnWidth + 'px'}" >
             <thumbnail-image :image="sunFlowerImage" @loaded="onLoaded" @click.native="onClickFerryThumbnail" class="image-radius"/>
           </div>
+          <div class="grid-item image-radius" :style="{width: columnWidth + 'px'}" >
+            <thumbnail-image :image="sunFlowerImage" @loaded="onLoaded" @click.native="onClickFerryThumbnail" class="image-radius"/>
+          </div>
+          <div class="grid-item image-radius" :style="{width: columnWidth + 'px'}" >
+            <thumbnail-image :image="sunFlowerImage" @loaded="onLoaded" @click.native="onClickFerryThumbnail" class="image-radius"/>
+          </div>
         </div>
       </div>
     </section>
@@ -44,7 +50,9 @@ export default {
     var grid = document.getElementById('grid');
 
     this.columnWidth = (window.innerWidth - 48 - 10)/2
-  
+
+    setTimeout(() =>  {
+    }, 1000)
     /* eslint-disable no-unused-vars */
     this.msnry = new Masonry(grid, {
         columnWidth: this.columnWidth,
