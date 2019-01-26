@@ -36,6 +36,10 @@ GET http://ferry-sunflower.ga/api/v1/qr/{QRID}
 
 ## 環境構築
 
+```
+cd front
+```
+
 ### Project setup
 ```
 yarn install
