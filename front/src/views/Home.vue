@@ -140,11 +140,13 @@ export default {
       return axios.get(`http://ferry-sunflower.ga/api/hogehoge/?qrid=${qrId}`).then(res => {
         console.log("hogeee", res.data)
         this.images =  res.data
+        this.onLoaded()
       }).catch(err => {
         console.log("NETWORK_ERR", err)
         // console.log(mockImages)
         // return mockImages
         this.images =  []
+        this.onLoaded()
       })
     }
   }
