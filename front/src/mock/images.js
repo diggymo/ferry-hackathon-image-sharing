@@ -2,7 +2,7 @@
 export default [
     {
       image: "http://placehold.jp/300x500.png", // 画像URL,
-      created_at: "2018-10-10 11:22:33", // 撮影日時。できればほしい笑
+      created_at: "2018-10-09 11:22:33", // 撮影日時。できればほしい笑
       spot: {
         id: 4,
         name: "別府地獄巡り",
@@ -20,7 +20,7 @@ export default [
     }, 
     {
       image: "http://placehold.jp/500x200.png", // 画像URL,
-      created_at: "2018-10-11 22:33:44", // 撮影日時。できればほしい笑
+      created_at: "2018-10-12 22:33:44", // 撮影日時。できればほしい笑
       spot: {
           id: 1,
           name: "由布岳",
@@ -38,7 +38,7 @@ export default [
     }, 
     {
       image: "http://placehold.jp/100x300.png", // 画像URL,
-      created_at: "2018-10-11 22:33:44", // 撮影日時。できればほしい笑
+      created_at: "2018-10-15 22:33:44", // 撮影日時。できればほしい笑
       spot: {
           id: 1,
           name: "由布岳",
@@ -47,7 +47,7 @@ export default [
     }, 
     {
       image: "http://placehold.jp/800x70.png", // 画像URL,
-      created_at: "2018-10-11 22:33:44", // 撮影日時。できればほしい笑
+      created_at: "2015-03-11 11:11:11", // 撮影日時。できればほしい笑
       spot: {
           id: 1,
           name: "由布岳",

@@ -2,10 +2,10 @@
   <div>
     <nav class="navbar is-fixed-top is-primary" role="navigation" aria-label="main navigation">
       <div class="navbar-brand">
-        <div class="navbar-item"><h3><b>さんふらわぁの旅</b>&nbsp;&nbsp;&nbsp;<small>aaaa年xx月yy日からbbbb年ii月jj日</small></h3></div>
+        <div class="navbar-item has-text-left"><div><h3><b>さんふらわぁの旅</b><br><small>{{ startDate | formatToDate }}から{{ endDate | formatToDate }}</small></h3></div></div>
       </div>
     </nav>
-    <section class="section">
+    <section class="section" id="main-section">
       <div class="container">
         <div id="grid">
           <div v-for="image in images" :key="image.src"  class="grid-item image-radius" :style="{width: columnWidth + 'px'}" >
@@ -24,6 +24,7 @@
 <script>
 import thumbnailImage from "@/components/ThumbnailImage"
 import imageCard from "@/components/ImageCard"
+import { format } from 'date-fns'
 
 import Masonry from "masonry-layout"
 
@@ -39,7 +40,7 @@ export default {
     thumbnailImage,
     imageCard
   },
-  async mounted() {
+  mounted() {
     var grid = document.getElementById('grid');
 
     this.columnWidth = (window.innerWidth - 48 - 10)/2
@@ -50,6 +51,23 @@ export default {
         gutter: 10,
         itemSelector: '.grid-item',
     });
+  },
+  computed: {
+    startDate() {
+      return this.images.slice(0,this.images.length).sort((a,b) => {
+        return a.created_at < b.created_at
+      })[0].created_at;
+    },
+    endDate() {
+      return this.images.slice(0,this.images.length).sort((a,b) => {
+        return a.created_at > b.created_at
+      })[0].created_at;
+    },
+  },
+  filters: {
+    formatToDate(value) {
+      return format(value, "YYYY年M月D日")
+    }
   },
   async created() {
     /* eslint-disable no-console */
@@ -120,5 +138,11 @@ export default {
 
 .image-radius {
   border-radius: 8px;
+}
+
+#main-section {
+  padding-top: 24px;
+  background-image: url("/bg.jpg");
+  background-attachment: fixed;
 }
 </style>
