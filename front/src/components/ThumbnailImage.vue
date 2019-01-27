@@ -1,7 +1,7 @@
 <template>
   <div class="image-wrapper image-radius">
     <img :src="image.image" @load="$emit('loaded')" class="image-radius">
-    <small style="margin-bottom: 6px;">{{ image.spot.name }}</small>
+    <small v-if="image.spot != null" style="margin-bottom: 6px;">{{ image.spot.name }}</small>
     <!-- <small>{{ image.spot.name }}</small> -->
   </div>
 </template>
