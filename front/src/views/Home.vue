@@ -42,7 +42,7 @@ export default {
     imageCard
   },
   mounted() {
-    this.columnWidth = (window.innerWidth - 48 - 10)/2
+    this.columnWidth = (screen.availWidth - 48-10)/2
     this.isMounted = true
   },
   computed: {
