@@ -7,19 +7,14 @@
     </nav>
     <section class="section" id="main-section">
       <div class="container">
+        <!-- <button @click="syncMsnry">テスト</button> -->
         <div id="grid">
           <div v-for="image in images" :key="image.src"  class="grid-item image-radius" :style="{width: columnWidth + 'px'}" >
             <thumbnail-image :image="image" @loaded="onLoaded" @click.native="onClickImage(image)" class="image-radius"/>
           </div>
-          <!-- <div class="grid-item image-radius" :style="{width: columnWidth + 'px'}" >
-            <thumbnail-image :image="sunFlowerImage" @loaded="onLoaded" @click.native="onClickFerryThumbnail" class="image-radius"/>
-          </div>
           <div class="grid-item image-radius" :style="{width: columnWidth + 'px'}" >
             <thumbnail-image :image="sunFlowerImage" @loaded="onLoaded" @click.native="onClickFerryThumbnail" class="image-radius"/>
           </div>
-          <div class="grid-item image-radius" :style="{width: columnWidth + 'px'}" >
-            <thumbnail-image :image="sunFlowerImage" @loaded="onLoaded" @click.native="onClickFerryThumbnail" class="image-radius"/>
-          </div> -->
         </div>
       </div>
     </section>
@@ -47,15 +42,8 @@ export default {
     imageCard
   },
   mounted() {
-    var grid = document.getElementById('grid');
-
     this.columnWidth = (window.innerWidth - 48 - 10)/2
-    /* eslint-disable no-unused-vars */
-    this.msnry = new Masonry(grid, {
-        columnWidth: this.columnWidth,
-        gutter: 10,
-        itemSelector: '.grid-item',
-    });
+    this.isMounted = true
   },
   computed: {
     startDate() {
@@ -82,20 +70,12 @@ export default {
   },
   async created() {
     /* eslint-disable no-console */
-    console.log(window.innerWidth)
+    await this.getImages()
 
-    this.columnWidth = window.innerWidth
-    
-    const spotId = this.$route.params.spot_id
-    const qrId = this.$route.query.qrid
-    console.log("SPOT", spotId)
-    console.log("QR", qrId)
-    // this.images = mockImages
-    await this.getImages(spotId, qrId)
-    this.onLoaded()
   },
   data() {
     return {
+      isMounted: false,
       msnry: null,
       columnWidth: 500, 
       selectedImage: null,
@@ -104,7 +84,7 @@ export default {
         created_at: "2018-10-10 11:22:33", // 撮影日時。できればほしい笑
         spot: {
           id: 4,
-          name: "さんふらわぁ",
+          name: "船の旅は一生忘れない",
           description: "人気の温泉観光地。おどろおどろしい地獄の名が付けられ、柵で囲われたさまざまな湯だまりがある。動物たちも飼育されている。"
         }
       },
@@ -119,16 +99,22 @@ export default {
   methods: {
     onLoaded() {
       // 画像のサイズリセットする
-      this.msnry.layout()
+      this.syncMsnry()
     },
     onClickImage(image) {
       this.selectedImage = image
+
+      // スポット情報がない場合は、ダウンロード
+      if (image.spot == null) {
+        window.open(image.image);
+      }
     },
     onCloseModal() {
       this.selectedImage = null
     },
     onClickFerryThumbnail() {
-      console.log("SUN_FLOEWR!!!!")
+      // さんふらわああさんのとこに飛ばす
+      window.open("https://www.ferry-sunflower.co.jp/");
     },
     async getImages(spotId, qrId) {
       if (spotId === undefined || qrId === undefined) {
@@ -136,21 +122,26 @@ export default {
         this.images = []
       }
 
-      console.log(`http://ferry-sunflower.ga/api/hogehoge/?qrid=${qrId}`)
-      return axios.get(`http://ferry-sunflower.ga/api/hogehoge/?qrid=${qrId}`).then(res => {
-        console.log("hogeee", res.data)
-        for (let index = 0; index < res.data.length; index++) {
-          console.log(res.data[index]);
-        }
+      axios.get(`/api/hogehoge/?qrid=${qrId}`).then(res => {
         this.images =  res.data
-        this.onLoaded()
       }).catch(err => {
         console.log("NETWORK_ERR", err)
         // console.log(mockImages)
         // return mockImages
         this.images =  []
-        this.onLoaded()
       })
+    },
+    syncMsnry() {
+      if (!this.isMounted) {
+        return
+      }
+      var grid = document.getElementById('grid');
+      /* eslint-disable no-unused-vars */
+      this.msnry = new Masonry(grid, {
+          columnWidth: this.columnWidth,
+          gutter: 10,
+          itemSelector: '.grid-item',
+      });
     }
   }
 }
