@@ -70,8 +70,10 @@ export default {
   },
   async created() {
     /* eslint-disable no-console */
-    await this.getImages()
+    const spotId = this.$route.params.spot_id
+    const qrId = this.$route.query.qrid
 
+    await this.getImages(spotId, qrId)
   },
   data() {
     return {
