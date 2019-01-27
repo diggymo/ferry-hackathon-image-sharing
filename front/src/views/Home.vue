@@ -15,6 +15,9 @@
           <div class="grid-item image-radius" :style="{width: columnWidth + 'px'}" >
             <thumbnail-image :image="sunFlowerImage" @loaded="onLoaded" @click.native="onClickFerryThumbnail" class="image-radius"/>
           </div>
+          <div class="grid-item image-radius" :style="{width: columnWidth + 'px'}" >
+            <thumbnail-image :image="demoImage" @loaded="onLoaded" @click.native="onClickDemoFerryThumbnail" class="image-radius"/>
+          </div>
         </div>
       </div>
     </section>
@@ -90,6 +93,15 @@ export default {
           description: "人気の温泉観光地。おどろおどろしい地獄の名が付けられ、柵で囲われたさまざまな湯だまりがある。動物たちも飼育されている。"
         }
       },
+      demoImage: {
+        image: "/ferry.jpg", // 画像URL,
+        created_at: "2018-10-10 11:22:33", // 撮影日時。できればほしい笑
+        spot: {
+          id: 4,
+          name: "見てみる？👀",
+          description: ""
+        }
+      },
       images: []
     }
   },
@@ -132,6 +144,10 @@ export default {
         // return mockImages
         this.images =  []
       })
+    },
+    onClickDemoFerryThumbnail() {
+      // gifを再生（笑）
+      window.open("/ferry_x1.gif");
     },
     syncMsnry() {
       if (!this.isMounted) {
